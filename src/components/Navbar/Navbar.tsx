@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import PersonIcon from '@mui/icons-material/Person';
 import './Navbar.css';
 
 const Navbar: React.FC = () => {
@@ -14,16 +16,24 @@ const Navbar: React.FC = () => {
           Sistema Bancario UTP
         </Typography>
         
-        <Button color="inherit" startIcon={<HomeIcon />} sx={{ mr: 1 }}>
+        <Button color="inherit" startIcon={<HomeIcon />} component={Link} to="/" sx={{ mr: 1 }}>
           Home
         </Button>
 
-        <Button color="inherit" startIcon={<MonetizationOnIcon />} sx={{ mr: 1 }}>
+        <Button color="inherit" startIcon={<MonetizationOnIcon />} component={Link} to="/transactions" sx={{ mr: 1 }}>
           Transacciones
         </Button>
 
-        <Button color="inherit" startIcon={<AccountBalanceIcon />} sx={{ mr: 1 }}>
+        <Button color="inherit" startIcon={<AccountBalanceIcon />} component={Link} to="/accounts" sx={{ mr: 1 }}>
           Cuentas
+        </Button>
+
+        <Button color="inherit" startIcon={<PersonIcon />} component={Link} to="/profile" sx={{ mr: 1 }}>
+          Profile
+        </Button>
+
+        <Button color="inherit" startIcon={<PersonIcon />} component={Link} to="/login">
+          Login
         </Button>
 
         <div className="search">
