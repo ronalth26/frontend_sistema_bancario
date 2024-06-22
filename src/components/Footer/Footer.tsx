@@ -1,11 +1,11 @@
-import React from 'react';
-import { Container, Typography, Box, Link } from '@mui/material';
-import { Facebook, Twitter, LinkedIn, GitHub } from '@mui/icons-material';
-import './Footer.css';
+import React from "react";
+import { Container, Typography, Box, Link } from "@mui/material";
+import { Facebook, Twitter, LinkedIn, GitHub } from "@mui/icons-material";
+import "./Footer.css";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
+    <footer className="footerMod">
       <Container>
         <Typography variant="h6" align="center" gutterBottom>
           Sistema Bancario Distribuido
@@ -13,7 +13,10 @@ const Footer: React.FC = () => {
         <Typography variant="body2" color="" align="center" paragraph>
           &copy; 2024 Todos los derechos reservados.
         </Typography>
-        <Box className="social-icons" sx={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+        <Box
+          className="social-icons"
+          sx={{ display: "flex", justifyContent: "center", gap: "1rem" }}
+        >
           <Link href="https://facebook.com" target="_blank" color="inherit">
             <Facebook />
           </Link>
