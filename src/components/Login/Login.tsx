@@ -53,12 +53,24 @@ const Login: React.FC = () => {
       const data = await response.text();
       console.log('Login successful:', data);
 
+      // Simulando un token de sesión almacenado en localStorage
       localStorage.setItem('token', 'dummyToken');
 
       // Guardar el usuario activo en localStorage
       localStorage.setItem('activeUser', username);
 
-      navigate('/dashboard');
+      // Redirigir al usuario dependiendo del estado de autenticación
+      if (localStorage.getItem('token')) {
+        // Si está autenticado, redirige a dashboard
+
+        navigate('/dashboard');
+
+        window.location.reload();
+      } else {
+        // Si no está autenticado, muestra un mensaje de error o realiza otra acción
+        setError('Credenciales incorrectas. Por favor, verifica tu número de cuenta y contraseña.');
+        setOpenError(true);
+      }
     } catch (error) {
       console.error('Error:', error);
       setError('Credenciales incorrectas. Por favor, verifica tu número de cuenta y contraseña.');

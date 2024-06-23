@@ -50,14 +50,6 @@ const Dashboard: React.FC = () => {
             </Card>
           </Grid>
         </Grid>
-        <div>aaa</div>
-        {activeUser && (
-          <Box mt={3}>
-            <Typography variant="body1">
-              Usuario activo: {activeUser}
-            </Typography>
-          </Box>
-        )}
       </Box>
     </Container>
   );
