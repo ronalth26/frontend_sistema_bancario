@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { Container, TextField, Button, Typography, Box, Snackbar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import styled from '@emotion/styled';
@@ -32,17 +32,46 @@ const StyledIconBox = styled(Box)`
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [openError, setOpenError] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Aquí agregar lógica para autenticar al usuario
-    localStorage.setItem('isAuthenticated', 'true');
-    navigate('/dashboard');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ numeroCuenta: username, password: password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.text();
+      console.log('Login successful:', data);
+
+      localStorage.setItem('token', 'dummyToken');
+
+      // Guardar el usuario activo en localStorage
+      localStorage.setItem('activeUser', username);
+
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Credenciales incorrectas. Por favor, verifica tu número de cuenta y contraseña.');
+      setOpenError(true);
+    }
   };
 
   const handleForgotPassword = () => {
-    // Lógica para enviar correo de recuperación de contraseña
     alert('Se enviará un correo electrónico para recuperar la contraseña.');
+  };
+
+  const handleCloseError = () => {
+    setOpenError(false);
   };
 
   return (
@@ -55,7 +84,7 @@ const Login: React.FC = () => {
           Iniciar Sesión
         </Typography>
         <TextField
-          label="Usuario"
+          label="Número de Cuenta"
           fullWidth
           margin="normal"
           value={username}
@@ -89,6 +118,14 @@ const Login: React.FC = () => {
         <Button color="primary" onClick={handleForgotPassword} fullWidth>
           ¿Olvidaste tu contraseña?
         </Button>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={openError}
+          autoHideDuration={6000}
+          onClose={handleCloseError}
+          message={error}
+          key={'bottomcenter'}
+        />
       </StyledFormContainer>
     </StyledContainer>
   );

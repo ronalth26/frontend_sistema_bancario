@@ -2,9 +2,12 @@ import React from 'react';
 import { Container, Typography, Box, Card, CardContent, Grid } from '@mui/material';
 
 const Dashboard: React.FC = () => {
+  // Obtener el usuario activo desde localStorage
+  const activeUser = localStorage.getItem('activeUser');
+
   return (
     <Container>
-        <br></br>
+      <br />
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
@@ -47,6 +50,14 @@ const Dashboard: React.FC = () => {
             </Card>
           </Grid>
         </Grid>
+        <div>aaa</div>
+        {activeUser && (
+          <Box mt={3}>
+            <Typography variant="body1">
+              Usuario activo: {activeUser}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Container>
   );

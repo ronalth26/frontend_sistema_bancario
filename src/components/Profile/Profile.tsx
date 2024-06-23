@@ -3,6 +3,7 @@ import { Container, Typography, Box, TextField, Button, Avatar, Grid } from '@mu
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Profile: React.FC = () => {
+  const activeUser = localStorage.getItem('activeUser');
   const handleUpdateProfile = () => {
     // Lógica para actualizar el perfil
   };
@@ -14,7 +15,8 @@ const Profile: React.FC = () => {
           <AccountCircleIcon sx={{ width: 64, height: 64 }} />
         </Avatar>
         <Typography variant="h4" align="center" gutterBottom>
-          Perfil de Usuario
+          Perfil de {activeUser}
+          
         </Typography>
         <Box component="form" sx={{ mt: 3 }} noValidate autoComplete="off">
           <Grid container spacing={2}>
@@ -24,7 +26,7 @@ const Profile: React.FC = () => {
                 fullWidth
                 id="username"
                 label="Usuario"
-                defaultValue="usuario123"
+                defaultValue={activeUser}
               />
             </Grid>
             <Grid item xs={12}>
@@ -32,8 +34,8 @@ const Profile: React.FC = () => {
                 required
                 fullWidth
                 id="email"
-                label="Correo Electrónico"
-                defaultValue="usuario@example.com"
+                label="DNI"
+                defaultValue="74212062"
               />
             </Grid>
             <Grid item xs={12}>
