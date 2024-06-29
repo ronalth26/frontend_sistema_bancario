@@ -38,7 +38,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8081/Login', {
+      const response = await fetch('/banco1/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

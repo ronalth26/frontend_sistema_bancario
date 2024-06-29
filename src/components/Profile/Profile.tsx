@@ -16,7 +16,7 @@ const Transactions: React.FC = () => {
 
   const handleTransaction = async () => {
     try {
-      const response = await axios.post('http://localhost:8081/transacciones/operacion', {
+      const response = await axios.post('/banco1/transacciones/operacion', {
         tipo: transactionType,
         monto: amount,
         cuentaOrigenNumero: activeUser, // Utiliza el número de cuenta del usuario activo

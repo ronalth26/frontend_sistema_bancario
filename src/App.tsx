@@ -22,10 +22,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-        <Route path="/transactions" element={<PrivateRoute><Transactions /></PrivateRoute>} /> {/* Asegúrate de que Transactions esté importado correctamente */}
-        <Route path="/accounts" element={<PrivateRoute><Accounts /></PrivateRoute>} />
-        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/transactions" element={<Transactions />} /> {/* Asegúrate de que Transactions esté importado correctamente */}
+        <Route path="/accounts" element={<Accounts />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </Router>
